@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+#include <array>
+using namespace std;
+
+
+
+int main() {
+	const int MAX_NUMBER_OF_STUDENTS = 300;
+	const int MAX_NUMBER_OF_ASSIGNMENTS = 100;
+	int numOfStudents;
+	int numOfAssignments;
+	int studentScores[MAX_NUMBER_OF_STUDENTS][MAX_NUMBER_OF_ASSIGNMENTS];
+
+	cout << "How many students do you have? ";
+	cin >> numOfStudents;
+	cout << "How many assignments you have to enter? ";
+	cin >> numOfAssignments;
+
+	for (int i = 0; i < numOfStudents; i++) {
+		for (int j = 0; j < numOfAssignments; j++) {
+			cout << "Enter Student No." << i + 1 << "'s score for Assignment No." << j + 1;
+			cin >> studentScores[i][j];
+		}
+	}
+
+	for (int i = 0; i < numOfStudents; i++) {
+		int totalScore = 0;
+		for (int j = 0; j < numOfAssignments; j++) {
+			totalScore += studentScores[i][j];
+		}
+		cout << "The average for Student No." << i << " is " << (totalScore / numOfAssignments) << endl;
+	}
+
+	return 0;
+}
