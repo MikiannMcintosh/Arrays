@@ -1,0 +1,53 @@
+//Write a program that accepts the class averages from four subjects: English, 
+//Math, Spanish & Science, and determines which class has the highest average.
+
+#include <iostream>
+#include <string>
+#include <array>
+using namespace std;
+
+double getAverage(string name) {
+	double average;
+	cout << "Please enter the average for " << name << ":" << endl;
+	cin >> average;
+	while (average < 0 || average > 100) {
+		cout << "Please enter an average between 0 and 100";
+		cin >> average;
+	}
+	return average;
+}
+
+void findHighestAverage(double average[], string classNames[]) {	
+	double highestAverage = 0;
+	int highestIndex;
+	for (int i = 0; i < sizeof(average); i++) {
+		if (average[i] > highestAverage) {
+			highestAverage = average[i];
+			highestIndex = i;
+		}
+	}
+	cout << "The class with the highest average is "
+		<< classNames[highestIndex] << "with an average "
+		<< "of " << highestAverage << endl;
+}
+
+int main() {
+	const int MAX_CLASSES = 1000;
+	double average[MAX_CLASSES];
+	string classNames[MAX_CLASSES];
+	int numOfClasses;
+	cout << "How many classes do you need to enter? You can enter up to 10 " << endl;
+	cin >> numOfClasses;
+
+	for (int i = 0; i < numOfClasses; i++) {
+		string name;
+		cout << "What class would you like to enter the average for? " << endl;
+		cin >> name;
+		classNames[i] = name;
+		average[i] = getAverage(name);
+	}
+
+	findHighestAverage(average, classNames);
+
+	return 0;
+}
